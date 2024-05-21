@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TournamentAPI.Api.Extensions;
+using TournamentAPI.Core.Repositories;
 using TournamentAPI.Data;
 using TournamentAPI.Data.Data;
 
@@ -25,6 +26,7 @@ namespace TournamentAPI.Api
 
             var app = builder.Build();
              app.SeedDataAsync();
+            builder.Services.AddScoped<IUnitOfWork, IUnitOfWork>();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
