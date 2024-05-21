@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TournamentAPI.Core.Repositories
 {
-    public interface IUnitofWork : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         ITournamentRepository TournamentRepository { get; }
         IGameRepository GameRepository { get; }
