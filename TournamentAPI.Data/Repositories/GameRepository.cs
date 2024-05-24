@@ -9,7 +9,7 @@ using TournamentAPI.Data.Data;
 
 namespace TournamentAPI.Data.Repositories
 {
-     class GameRepository : IGameRepository
+    public class GameRepository : IGameRepository
     {
         private readonly TournamentAPIApiContext _context;
 

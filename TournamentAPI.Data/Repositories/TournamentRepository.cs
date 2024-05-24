@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using TournamentAPI.Core.Entities;
 using TournamentAPI.Core.Repositories;
 using TournamentAPI.Data.Data;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace TournamentAPI.Data.Repositories
 {
-    internal class TournamentRepository : ITournamentRepository
+    public class TournamentRepository : ITournamentRepository
     {
         private readonly TournamentAPIApiContext _context;
 
@@ -38,16 +36,21 @@ namespace TournamentAPI.Data.Repositories
         public void Add(Tournament tournament)
         {
             _context.Tournament.Add(tournament);
+            _context.SaveChanges(); 
         }
 
-        public void Update(Tournament tournament)
+        public void  Update(Tournament tournament)
         {
             _context.Tournament.Update(tournament);
+             _context.SaveChangesAsync(); 
         }
 
-        public void Remove(Tournament tournament)
+
+        
+        public void  Remove(Tournament tournament)
         {
             _context.Tournament.Remove(tournament);
+             _context.SaveChangesAsync(); 
         }
     }
 }

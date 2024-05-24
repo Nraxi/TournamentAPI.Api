@@ -4,6 +4,7 @@ using TournamentAPI.Api.Extensions;
 using TournamentAPI.Core.Repositories;
 using TournamentAPI.Data;
 using TournamentAPI.Data.Data;
+using TournamentAPI.Data.Repositories;
 
 namespace TournamentAPI.Api
 {
@@ -14,7 +15,10 @@ namespace TournamentAPI.Api
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<TournamentAPIApiContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("TournamentAPIApiContext") ?? throw new InvalidOperationException("Connection string 'TournamentAPIApiContext' not found.")));
-           
+
+            builder.Services.AddScoped<ITournamentRepository, TournamentRepository>();
+            builder.Services.AddScoped<IGameRepository, GameRepository>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             // Add services to the container.
 
             builder.Services.AddControllers(opt => opt.ReturnHttpNotAcceptable = true)
@@ -26,7 +30,7 @@ namespace TournamentAPI.Api
 
             var app = builder.Build();
              app.SeedDataAsync();
-            builder.Services.AddScoped<IUnitOfWork, IUnitOfWork>();
+           
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
