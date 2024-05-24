@@ -36,16 +36,19 @@ namespace TournamentAPI.Data.Repositories
         public void Add(Game game)
         {
             _context.Game.Add(game);
+            
         }
 
         public void Update(Game game)
         {
             _context.Game.Update(game);
+          
         }
 
-        public void Remove(Game game)
+        public  void Remove(Game game)
         {
             _context.Game.Remove(game);
+         
         }
     }
 }

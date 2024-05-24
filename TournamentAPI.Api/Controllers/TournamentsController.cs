@@ -44,18 +44,39 @@ namespace TournamentAPI.Api.Controllers
             await _unitOfWork.CompleteAsync();
             return CreatedAtAction("GetTournament", new { id = tournament.Id }, tournament);
         }
-
-            [HttpPut("{id}")]
-            public async Task<IActionResult> UpdateTournament(int id, Tournament tournament)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateTournament(int id, Tournament tournament)
+        {
+            if (id != tournament.Id)
             {
-                if (id != tournament.Id)
-                {
-                    return BadRequest();
-                }
-                _unitOfWork.TournamentRepository.Update(tournament);
+                return BadRequest("The provided id does not match the id of the tournament.");
+            }
+
+            var existingTournament = await _unitOfWork.TournamentRepository.GetAsync(id);
+            if (existingTournament == null)
+            {
+                return NotFound("Tournament not found.");
+            }
+
+            // Update the existing tournament with the new data
+            existingTournament.Title = tournament.Title;
+            existingTournament.StartDate = tournament.StartDate;
+            // Update other properties as needed
+
+            try
+            {
+                _unitOfWork.TournamentRepository.Update(existingTournament);
                 await _unitOfWork.CompleteAsync();
                 return NoContent();
             }
+            catch (Exception ex)
+            {
+                // Log the exception
+                return StatusCode(500, "An error occurred while updating the tournament.");
+            }
+        }
+
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTournament(int id)

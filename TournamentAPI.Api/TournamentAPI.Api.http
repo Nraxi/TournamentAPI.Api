@@ -1,7 +1,5 @@
 @TournamentAPI.Api_HostAddress = https://localhost:7151
 
-###
-
 GET {{TournamentAPI.Api_HostAddress}}/api/games
 
 ###
@@ -9,43 +7,32 @@ GET {{TournamentAPI.Api_HostAddress}}/api/games
 POST {{TournamentAPI.Api_HostAddress}}/api/games
 Content-Type: application/json
 
-{
-   
-    "title": "Matchen",
-    "time": "0001-01-01T00:00:00",
-    "tournamentId": 1
-}
 
-###
-
-GET {{TournamentAPI.Api_HostAddress}}/api/games/9
-
-###
-
-DELETE {{TournamentAPI.Api_HostAddress}}/api/games/2
-
-###
-
-PUT {{TournamentAPI.Api_HostAddress}}/api/games/10
-Content-Type: application/json
-
-{
- 
-    "title": "Matchene,
-    "time": "0001-01-01T00:00:00",
-    "tournamentId": 1
-}
-
-###
-
-PUT {{TournamentAPI.Api_HostAddress}}/api/tournaments/1
-Content-Type: application/json
-
-{
-   
-    "title": "Turnament
+  {
+    "id": 0,
+    "title": "Matc54h ",
     
+    "tournamentId": 1,
   }
+
+###
+
+GET {{TournamentAPI.Api_HostAddress}}/api/games/29
+
+###
+
+DELETE {{TournamentAPI.Api_HostAddress}}/api/games/0
+
+###
+
+PUT {{TournamentAPI.Api_HostAddress}}/api/games/29
+Content-Type: application/json
+
+{
+  "id":29,
+  "title": "Mac5 ",
+ 
+}
 
 ###
 
@@ -53,33 +40,12 @@ GET {{TournamentAPI.Api_HostAddress}}/api/tournaments
 
 ###
 
-POST {{TournamentAPI.Api_HostAddress}}/api/tournaments
+PUT {{TournamentAPI.Api_HostAddress}}/api/tournaments/7
 Content-Type: application/json
 
 {
-  "id": 0,
-  "title": "strings",
-  "startDate": "2024-05-24T10:43:29.724Z",
-  "games": [
-    {
-      "id": 0,
-      "title": "string",
-      "time": "2024-05-24T10:43:29.724Z",
-      "tournamentId": 0
-    }
-  ]
+    "id":7,
+   "title": "MO",
 }
-
-###
-PUT {{TournamentAPI.Api_HostAddress}}/api/tournaments/3
-Content-Type: application/json
-
-{
-  "title": "Ny turneringstitel"
-}
-
-###
-
-GET {{TournamentAPI.Api_HostAddress}}/api/tournaments/3
 
 ###

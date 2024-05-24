@@ -50,12 +50,34 @@ namespace TournamentAPI.Api.Controllers
         {
             if (id != game.Id)
             {
-                return BadRequest();
+                return BadRequest("The provided id does not match the id of the game.");
             }
-            _unitOfWork.GameRepository.Update(game);
-            await _unitOfWork.CompleteAsync();
-            return NoContent();
+
+            var existingGame = await _unitOfWork.GameRepository.GetAsync(id);
+            if (existingGame == null)
+            {
+                return NotFound("Game not found.");
+            }
+
+            // Update the existing game with the new data
+            existingGame.Title = game.Title;
+            existingGame.Time = game.Time;
+            // Update other properties as needed
+
+            try
+            {
+                _unitOfWork.GameRepository.Update(existingGame);
+                await _unitOfWork.CompleteAsync();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                return StatusCode(500, "An error occurred while updating the game.");
+            }
         }
+
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteGame(int id)

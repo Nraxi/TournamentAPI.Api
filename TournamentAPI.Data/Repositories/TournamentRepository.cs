@@ -36,13 +36,13 @@ namespace TournamentAPI.Data.Repositories
         public void Add(Tournament tournament)
         {
             _context.Tournament.Add(tournament);
-            _context.SaveChanges(); 
+           
         }
 
         public void  Update(Tournament tournament)
         {
             _context.Tournament.Update(tournament);
-             _context.SaveChangesAsync(); 
+            
         }
 
 
@@ -50,7 +50,7 @@ namespace TournamentAPI.Data.Repositories
         public void  Remove(Tournament tournament)
         {
             _context.Tournament.Remove(tournament);
-             _context.SaveChangesAsync(); 
+            
         }
     }
 }
